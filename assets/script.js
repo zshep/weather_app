@@ -1,5 +1,5 @@
 // global varibales
-
+var weatherApiKey = "33267835088a1301ccfa970b21fd1522";
 
     //local storage variable
 
@@ -8,12 +8,34 @@
 
 
 
-// API variables
+
+
 // moment -current time
 // moment - current date
 
 
 //create function to take in user input for city
+           // -use city to grab lat and lon
+var userCity =$("#cname");
+
+
+// API variables
+
+
+$("#searchCity").click(getCity(userCity));
+
+
+function getCity(uc) {
+    var citylocation = `http:api.openweathermap.org/geo/1.0/direct?q=${uc}&limit=1&appid=${weatherApiKey}`;
+    console.log(userCity);
+    fetch(citylocation) // using variable name to grab coordinates
+        .then(function(response) {
+            console.log(response);
+            return response.json();
+
+        })
+}
+
           // -uses API to grab current weather conditions
           // - uses API to grab future weather conitions
           // - stores city in local storage

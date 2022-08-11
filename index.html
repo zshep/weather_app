@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./assets/style.css" />
   <title>Shep's Weather App</title>
  </head>
 
@@ -28,8 +28,13 @@
     <section class="searchbar">
       <h1>City Search:</h1>
       <!--create input to grab city-->
-      <!--create button to submit form-->
-      <button class="searchbtn"></button>
+      <form>
+        <!--create button to submit form-->
+        <label for="cityName">Enter a City</label>
+        <input type="text" id="cname" name="cityName" placeholder="Detriot"><br>
+        <label for="cityBtn"></label>
+        <input type="submit" value="Submit" id="searchCity" >
+      </form>
     </section>
 
     <section class="savedcities">
@@ -69,7 +74,7 @@
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-  <script src="./script.js"></script>
+  <script src="./assets/script.js"></script>
   <script src=""></script>
 </body>
 
