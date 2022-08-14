@@ -17,7 +17,7 @@
 
 <body>
   <!-- Main banner-->
-  <header>
+  <header>  <!--TO DO: find bootstrap to make pretty-->
     <!--create opening greeting-->
     <h1>Shep's Weather App</h1>
   </header>
@@ -28,12 +28,13 @@
     <section class="searchbar">
       <h1>City Search:</h1>
       <!--create input to grab city-->
-      <form>
-        <!--create button to submit form-->
-        <label for="cityName">Enter a City</label>
-        <input type="text" id="cname" name="cityName" placeholder="Detriot"><br>
-        <label for="cityBtn"></label>
-        <input type="submit" value="Submit" id="searchCity" >
+      <form id="search"> <!--TO DO: make pretty-->
+        <div class="search-input">
+          <label for="cityName">Enter a City</label><br>
+          <input type="text" id="cname" name="cityName"     placeholder="Detriot"><br> 
+        </div>
+       <!--create button to submit form-->
+        <button type="submit" id="searchBtn" >Search City</button>
       </form>
     </section>
 
