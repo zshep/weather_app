@@ -26,21 +26,24 @@
   <aside>
 
     <section class="searchbar">
-      <h1>City Search:</h1>
-      <!--create input to grab city-->
-      <form id="search"> <!--TO DO: make pretty-->
-        <div class="search-input">
-          <label for="cityName">Enter a City</label><br>
-          <input type="text" id="cname" name="cityName"     placeholder="Detriot"><br> 
+      <div class="container">
+        <h1>City Search:</h1>
+        <!--create input to grab city-->
+        <form id="search"> <!--TO DO: make pretty-->
+          <div class="search-input">
+            <label for="cityName">Enter a City</label><br>
+            <input type="text" id="cname" name="cityName"     placeholder="Detriot"><br> 
+          </div>
+        <!--create button to submit form-->
+          <button type="submit" id="searchBtn" >Search City</button>
+        </form><br>
+        <div id="savedcities">
+          <!--retrieve cities from local storage (if available)-->
         </div>
-       <!--create button to submit form-->
-        <button type="submit" id="searchBtn" >Search City</button>
-      </form>
+      </div>
     </section>
 
-    <section class="savedcities">
-      <!--retrieve cities from local storage (if available)-->
-    </section>
+    
   </aside>
   <!-- main body to hold main info AND 5 day forcast-->
   <main>
