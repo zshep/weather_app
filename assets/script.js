@@ -1,5 +1,5 @@
 // global varibales
-var weatherApiKey = "33267835088a1301ccfa970b21fd1522";
+
 
   
 
