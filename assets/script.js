@@ -7,6 +7,8 @@
 var userCity =$("#cname"); // city name from user
 var searchForm =$("#search"); // form container for search
 var searchHistory =$("#savedcities"); // search hisory box
+var mainCityinfo = $("#maincardcontainer"); // current city main info
+var mainCitydeets =$(".maindetailscontainer") // current city details (temp, humidity, wind speed)
 //make variable to reference city weather info
 // make variable to reference 5day forcast
 
@@ -57,8 +59,7 @@ $("#searchBtn").click(function(event){
     localStorage.setItem("Saved-Cities", JSON.stringify(cityHistory)); //adds to local storage
     
     showHistory(); //rerun search history with new event
-    
-   
+       
 });
     
 
@@ -84,22 +85,49 @@ function getCity(uc) {
             const {humidity} = data.main;
             const {lat} = data.coord;
             const {lon} = data.coord;
-            $('#currentHumid').text(humidity+"%");
-            $("#currentCityName").text(name);
-            $("#cityDateTime").text(formattedTime);
-            $("#currentTemp").text(temp + "°F");
-            $('#currentWindSpeed').text(speed+" MPH"); 
-            $('#weatherIcon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;      
+            var cName =$("<p></p>").text(`${name}`);
+            var cdate =$("<p></p>").text(formattedTime);
+            var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/'${icon}.png`);
+            var humid =$('<p></p>').text(`humidity: ${humidity} %`);
+            var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
+            var wspeed =$('<p></p>').text(`Windspeed: ${speed} MPH`); 
+            $("#headerCityinfo").append(cName, cdate, wicon);
+            $("#maindetailscontainer").append(humid, ctemp, wspeed);     
             return getWeather(lat, lon);
-        
         });
 }
-
+//function to get specific weather data including UV
 function getWeather(latitude, longitude) {
 
-
-
-
+    fetch('https://api.openweathermap.org/data/2.5/onecall?appid=f510236949173fad67a61182bbdd1a37&lat='+ latitude +'&lon='+ longitude +'&exclude=hourly,minutely&units=imperial')
+    .then((response) => {
+        return response.json();
+    })
+    .then(function (data2) { 
+        const {uvi} = data2.current;
+        //Changes the UV color by severity
+        $('#currentUV').text(uvi);
+        if (~~($('#currentUV').text()) < 2) {
+            $('#currentUV').attr('class','ms-1 favorableUV')
+        } 
+        else if (~~($('#currentUV').text()) >= 2 && ~~($('#currentUV').text()) <= 8 ) {
+            $('#currentUV').attr('class','ms-1 moderateUV')
+        }
+        else if (~~($('#currentUV').text()) > 7) {
+            $('#currentUV').attr('class','ms-1 severeUV')
+        };
+    })
+        //create function to color code uv index
+        //if (UV index < x) {
+            //set color to green (favorable)
+        //}
+        //if (x < UV index < y) {
+            //set color to yellow (moderate)
+        //}
+        //if (UV index > y) {
+            //set color to red (severe)
+        //}
+        //return 
 
 
 
@@ -109,10 +137,7 @@ function getWeather(latitude, longitude) {
 
 
 
-          // -uses API to grab current weather conditions
-          // - uses API to grab future weather conitions
-          // - stores city in local storage
-          // - appends city to search hisotry ("".searchbtn") (creates a btn that pulls up results of city)
+         
 
 
 
@@ -131,17 +156,7 @@ function getWeather(latitude, longitude) {
     //  -uv index
 
 
-//create function to color code uv index
-    //if (UV index < x) {
-        //set color to green (favorable)
-    //}
-    //if (x < UV index < y) {
-        //set color to yellow (moderate)
-    //}
-    //if (UV index > y) {
-        //set color to red (severe)
-    //}
-    //return 
+
 
 
 
