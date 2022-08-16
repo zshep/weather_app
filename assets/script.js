@@ -62,7 +62,7 @@ $("#searchBtn").click(function(event){
        
 });
     
-
+var weatherApiKey = "33267835088a1301ccfa970b21fd1522";
 
 //function to get cities lat and lon values via name
 function getCity(uc) {
@@ -75,25 +75,32 @@ function getCity(uc) {
         })
 
         .then(function (data) {
-            const {name} = data;            
-            const {dt} = data;
-            const {timezone} = data;
-            var adjustedTime = timezone / 60; 
-            var formattedTime = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY');          
-            const {temp} = data.main;
-            const {speed} = data.wind;
-            const {humidity} = data.main;
-            const {lat} = data.coord;
-            const {lon} = data.coord;
-            var cName =$("<p></p>").text(`${name}`);
-            var cdate =$("<p></p>").text(formattedTime);
-            var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/'${icon}.png`);
-            var humid =$('<p></p>').text(`humidity: ${humidity} %`);
-            var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
-            var wspeed =$('<p></p>').text(`Windspeed: ${speed} MPH`); 
-            $("#headerCityinfo").append(cName, cdate, wicon);
-            $("#maindetailscontainer").append(humid, ctemp, wspeed);     
-            return getWeather(lat, lon);
+            console.log(data[0].name);
+            
+            const {name} = data[0];            
+            
+            // const {dt} = data;                    
+            // const {timezone} = data;
+            // var adjustedTime = timezone / 60; 
+            // var formattedTime = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY');          
+            // const { temp } = data;
+            // const { wind_speed} = data
+            // const { humidity } = data;
+            // const { lat } = data;
+            // const { lon } = data;
+            // const { icon } =data.weather;
+            // var cName =$("<p></p>").text(`${name}`);
+            // var cdate =$("<p></p>").text(formattedTime);
+            // var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/'${icon}.png`);
+            // var humid =$('<p></p>').text(`humidity: ${humidity} %`);
+            // var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
+            // var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`); 
+            // $("#headerCityinfo").append(cName, cdate, wicon);
+            // $("#maindetailscontainer").append(humid, ctemp, wspeed);     
+                
+            // return getWeather(lat, lon);
+        
+
         });
 }
 //function to get specific weather data including UV
