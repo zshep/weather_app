@@ -23,12 +23,12 @@
   </header>
 
   <!--- side container to hold search and saved results-->
-  <aside>
+  <div class="bigContainer">
 
-    <section class="searchbar">
-      <div class="container">
-        <h1>City Search:</h1>
-        <!--create input to grab city-->
+    <aside class="searchbar">
+      <div>
+        <h1 class="searchtitle">City Search:</h1>
+        <!--input to grab city-->
         <form id="search"> <!--TO DO: make pretty-->
           <div class="search-input">
             <label for="cityName">Enter a City</label><br>
@@ -41,35 +41,35 @@
           <!--retrieve cities from local storage (if available)-->
         </div>
       </div>
-    </section>
+    </aside>
 
     
-  </aside>
+  
   <!-- main body to hold main info AND 5 day forcast-->
-  <main>
-    <!--City weather info-->
-    <section class="cityInfo">
-      <div class="maincardcontainer">  
-        <!-- City name, date, icon for weather-->
-        <h1 id="headerCityinfo"></h1>
-        <!--div to hold city info-->
-        <div id="maindetailscontainer">
-          <h1>City Info</h1>
-          <!-- list city info: temp, wind, humidity, uv index-->
-          <ul>
-          </ul>
+    <main>
+      <!--City weather info-->
+      <section class="cityInfo">
+        <div class="maincardcontainer">  
+          <!-- City name, date, icon for weather-->
+          <h1 id="headerCityinfo"></h1>
+          <!--div to hold city info-->
+          <div id="maindetailscontainer">
+            <h1>City Info</h1>
+            <!-- list city info: temp, wind, humidity, uv index-->
+            <ul>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
-    <!-- 5 day forcast-->
-    <section class="5dayforcast">
-      <h1>5 Day Forcast</h1>
-      <div class=forcastCards>
-        <!-- go check bootstrap for card stuff-->
-      </div>
-    </section>
-  </main>
-
+      </section>
+      <!-- 5 day forcast-->
+      <section class="5dayforcast">
+        <h1>5 Day Forcast</h1>
+        <div class=forcastCards>
+          <!-- go check bootstrap for card stuff-->
+        </div>
+      </section>
+    </main>
+  </div>
 
 
 

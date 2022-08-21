@@ -1,0 +1,28 @@
+
+
+/* styling for everything not header     */
+.bigContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+/* City header styling  */
+#headerCityinfo {
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+}
+
+#headerCityinfo p {
+    flex-grow: 1;
+
+}
+
+
+.searchbar {
+    width: 30%;
+
+
+}
+
+
