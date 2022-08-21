@@ -104,16 +104,17 @@ function getWeather(latitude, longitude) {
         var formattedTime = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY');          
         const { temp, humidity, uvi } = data2.current;
         const { wind_speed} = data2.current;
-        
         const { icon } =data2.current.weather[0];
         console.log(`The temp is: ${temp}`);
         console.log(`The icon id is: ${icon}`);
         
         var cdate =$("<p></p>").text(formattedTime);
-        var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/${icon}.png`);
+        //var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/${icon}.png`);
+        var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`);
         var humid =$('<p></p>').text(`humidity: ${humidity} %`);
         var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
         var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`); 
+        // append the new info to the proper containers
         $("#headerCityinfo").append(cdate, wicon);
         $("#maindetailscontainer").append(humid, ctemp, wspeed); 
         
