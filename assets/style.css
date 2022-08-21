@@ -21,8 +21,21 @@
 
 .searchbar {
     width: 30%;
+}
 
+/* UVI styling  */
+.favorableUV {
+    background-color:green;
 
 }
 
+.moderateUV {
+     background-color: yellow;
+
+}
+
+.severeUV {
+    background-color: red;
+
+}
 

@@ -107,19 +107,19 @@ function getWeather(latitude, longitude) {
         const { icon } =data2.current.weather[0];
         console.log(`The temp is: ${temp}`);
         console.log(`The icon id is: ${icon}`);
-        
+        console.log(`The uvi is: ${uvi}`);
         var cdate =$("<p></p>").text(formattedTime);
-        //var wicon =$('<p></p>').attr("src",`https://openweathermap.org/img/wn/${icon}.png`);
         var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`);
         var humid =$('<p></p>').text(`humidity: ${humidity} %`);
         var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
-        var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`); 
+        var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`);
+        var uviIndex =$('<p></p>').attr('id', 'currentUV'); 
         // append the new info to the proper containers
         $("#headerCityinfo").append(cdate, wicon);
-        $("#maindetailscontainer").append(humid, ctemp, wspeed); 
+        $("#maindetailscontainer").append(humid, ctemp, wspeed, uviIndex); 
         
         //Changes the UV color by severity
-        $('#currentUV').text(uvi);
+        $('#currentUV').text(`UVI Index: ${uvi}`);
         if (~~($('#currentUV').text()) < 2) {
             $('#currentUV').attr('class','ms-1 favorableUV')
         } 
@@ -130,36 +130,10 @@ function getWeather(latitude, longitude) {
             $('#currentUV').attr('class','ms-1 severeUV')
         };
     })
-        //create function to color code uv index
-        //if (UV index < x) {
-            //set color to green (favorable)
-        //}
-        //if (x < UV index < y) {
-            //set color to yellow (moderate)
-        //}
-        //if (UV index > y) {
-            //set color to red (severe)
-        //}
-        //return 
-
+       
 }
        
-
-
-
-
-// create function to populate main city weather info: pull...
-    // -city name, 
-    //  -current date
-    //  -current weather condition (link to icon)
-        //create element that holds info
-        
-
-//create fuction to populate main city extra info:
-    //  -temp
-    //  -humidity
-    //  -wind speed
-    //  -uv index
+       
 
 
 
