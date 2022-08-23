@@ -81,6 +81,7 @@ function getCity(uc) {
         const { lat } = data[0]; 
         const { lon } = data[0];
         var cName =$("<p></p>").text(`${name}`);
+        $("#headerCityinfo").empty();
         $("#headerCityinfo").append(cName);
         console.log(`The city name is: ${name}`);
         console.log(`The latitude is: ${lat}`);
@@ -116,7 +117,7 @@ function getWeather(latitude, longitude) {
         var uviIndex =$('<p></p>').attr('id', 'currentUV'); 
         // append the new info to the proper containers
         $("#headerCityinfo").append(cdate, wicon);
-        $("#maindetailscontainer").append(humid, ctemp, wspeed, uviIndex); 
+        $("#maindetailscontainer").empty().append(humid, ctemp, wspeed, uviIndex); 
         
         //Changes the UV color by severity
         $('#currentUV').text(`UVI Index: ${uvi}`);
