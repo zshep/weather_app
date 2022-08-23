@@ -6,22 +6,21 @@
 //DOM variables
 var userCity =$("#cname"); // city name from user
 var searchForm =$("#search"); // form container for search
-var searchHistory =$("#savedcities"); // search hisory box
+var searchHistory = $('#savedcities'); // search hisory box
 var mainCityinfo = $("#maincardcontainer"); // current city main info
 var mainCitydeets =$(".maindetailscontainer") // current city details (temp, humidity, wind speed)
+
+
 //make variable to reference city weather info
 // make variable to reference 5day forcast
 
 
 //variables
 var cityHistory = []; // empty city list
-// moment -current time
-// moment - current date
-// API variables
 
 
-//Action code:
-showHistory();
+
+
 
 // function that loads the saved cities from local storage
 function showHistory () {
@@ -38,11 +37,11 @@ function showHistory () {
         btn.setAttribute('data-search', cityHistory[i]);
         searchHistory.append(btn);
     }
-    } else return;
+} else return;
 };
 
 
-//function that searches API when search city is clicked
+//function that searches Local storage when search city is clicked
 $("#searchBtn").click(function(event){
     event.preventDefault();
     // prevent empty value of city
@@ -55,13 +54,14 @@ $("#searchBtn").click(function(event){
     console.log(chosenCity);
     getCity(chosenCity); //gets the lat/lon of requested city
     cityHistory.push(chosenCity); // adds to the city history array
-       
+    
     localStorage.setItem("Saved-Cities", JSON.stringify(cityHistory)); //adds to local storage
     
     showHistory(); //rerun search history with new event
        
 });
-    
+
+
 var weatherApiKey = "33267835088a1301ccfa970b21fd1522";
 
 //function to get cities lat and lon values via name
@@ -70,27 +70,27 @@ function getCity(uc) {
 
     
     fetch(citylocation) // using variable name to grab coordinates
-        .then((response) => {
-            console.log(response)
-            return response.json();
-        })
-
-        .then(function (data) {
-                       console.log(data)
-            const {name} = data[0];         
-            const { lat } = data[0]; 
-            const { lon } = data[0];
-            var cName =$("<p></p>").text(`${name}`);
-            $("#headerCityinfo").append(cName);
-            console.log(`The city name is: ${name}`);
-            console.log(`The latitude is: ${lat}`);
-            console.log(`The longitude is: ${lon}`);
-            return getWeather(lat, lon);
-        });
+    .then((response) => {
+        console.log(response)
+        return response.json();
+    })
+    
+    .then(function (data) {
+        console.log(data)
+        const {name} = data[0];         
+        const { lat } = data[0]; 
+        const { lon } = data[0];
+        var cName =$("<p></p>").text(`${name}`);
+        $("#headerCityinfo").append(cName);
+        console.log(`The city name is: ${name}`);
+        console.log(`The latitude is: ${lat}`);
+        console.log(`The longitude is: ${lon}`);
+        return getWeather(lat, lon);
+    });
 }
 //function to get specific weather data from lat and lon including UV
 function getWeather(latitude, longitude) {
-
+    
     fetch('https://api.openweathermap.org/data/2.5/onecall?appid=f510236949173fad67a61182bbdd1a37&lat='+ latitude +'&lon='+ longitude +'&exclude=hourly,minutely&units=imperial')
     .then((response) => {
         return response.json();
@@ -130,18 +130,25 @@ function getWeather(latitude, longitude) {
             $('#currentUV').attr('class','ms-1 severeUV')
         };
     })
-       
+    
 }
-       
-       
-
-
-
-
-
 
 //create function that loops through city info and posts the 5 day forcast
+function fivedaycast(){
+    
     //grab global variables for each of the next days
     // display date, icon representing weather condition, temp, windspeed and humidity
+    
+    
+}
 
 
+//function that listens for city history btn click
+function btnHistory(event) {
+    var btnclick = event.target;
+    var cityName = btnclick.getAttribute('data-search');    
+    getCity(cityName);
+}
+//Action code:
+showHistory();
+searchHistory[0].addEventListener('click', btnHistory);
