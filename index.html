@@ -17,9 +17,9 @@
 
 <body>
   <!-- Main banner-->
-  <header>  <!--TO DO: find bootstrap to make pretty-->
-    <!--create opening greeting-->
+  <header><center>    
     <h1>Shep's Weather App</h1>
+  </center>
   </header>
 
   <!--- side container to hold search and saved results-->
@@ -29,7 +29,7 @@
       <div>
         <h1 class="searchtitle">City Search:</h1>
         <!--input to grab city-->
-        <form id="search"> <!--TO DO: make pretty-->
+        <form id="search"> 
           <div class="search-input">
             <label for="cityName">Enter a City</label><br>
             <input type="text" id="cname" name="cityName"     placeholder="Detriot"><br> 
@@ -37,7 +37,7 @@
         <!--create button to submit form-->
           <button type="submit" id="searchBtn" >Search City</button>
         </form><br>
-        <div id="savedcities">
+        <div class="list-group list-group-flush" id="savedcities" >
           <!--retrieve cities from local storage (if available)-->
         </div>
       </div>
@@ -46,7 +46,7 @@
     
   
   <!-- main body to hold main info AND 5 day forcast-->
-    <main>
+    <main class="container-fluid ">
       <!--City weather info-->
       <section class="cityInfo">
         <div class="maincardcontainer">  
@@ -62,9 +62,9 @@
         </div>
       </section>
       <!-- 5 day forcast-->
-      <section class="fivedayforcast">
-        <h1>5 Day Forecast</h1>
-        <div class="forcastCards">
+      <section class="fivedayforcast container-fluid card-group text-center justify-content-center">
+        
+         <div class="forcastCards card align-items-center" >
           <!-- go check bootstrap for card stuff-->
         </div>
       </section>

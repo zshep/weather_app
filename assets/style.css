@@ -1,9 +1,23 @@
+/*styling for header*/
+header {
+    align-items: center;
 
+}
 
 /* styling for everything not header     */
 .bigContainer {
     display: flex;
     flex-direction: row;
+}
+
+main {
+    max-width: 70%;
+   }
+
+.cityInfo {
+    width: 70%;
+
+
 }
 
 /* City header styling  */
@@ -34,24 +48,24 @@
 }
 
 
-
+/* styling for the aside tag (class search bar)*/
 .searchbar {
-    width: 30%;
+    max-width: 30%;
 }
 
 /* UVI styling  */
 .favorableUV {
     background-color:green;
-
+    color: white;
 }
 
 .moderateUV {
-     background-color: yellow;
-
+    background-color: yellow;
+    color: black;
 }
 
 .severeUV {
     background-color: red;
-
+    color: white;
 }
 

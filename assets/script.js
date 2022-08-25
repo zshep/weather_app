@@ -35,6 +35,7 @@ function showHistory () {
         btn.setAttribute('type', 'button');        
         btn.textContent = cityHistory[i];
         btn.setAttribute('data-search', cityHistory[i]);
+        btn.classList.add("list-group-item");
         searchHistory.append(btn);
     }
 } else return;
