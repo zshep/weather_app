@@ -86,7 +86,8 @@ function getCity(uc) {
         console.log(`The city name is: ${name}`);
         console.log(`The latitude is: ${lat}`);
         console.log(`The longitude is: ${lon}`);
-        return getWeather(lat, lon);
+        getWeather(lat, lon);
+        fivedaycast(lat, lon);
     });
 }
 //function to get specific weather data from lat and lon including UV
@@ -103,12 +104,12 @@ function getWeather(latitude, longitude) {
         var adjustedTime = timezone / 60; 
         const {dt} = data2.current;                    
         var formattedTime = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY');          
-        const { temp, humidity, uvi } = data2.current;
-        const { wind_speed} = data2.current;
+        const { temp, humidity, wind_speed, uvi } = data2.current;
         const { icon } =data2.current.weather[0];
-        console.log(`The temp is: ${temp}`);
-        console.log(`The icon id is: ${icon}`);
-        console.log(`The uvi is: ${uvi}`);
+        console.log(`The current temp is: ${temp}`);
+        console.log(`The current icon id is: ${icon}`);
+        console.log(`The current uvi is: ${uvi}`);
+        //create elements to put data in
         var cdate =$("<p></p>").text(formattedTime);
         var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`);
         var humid =$('<p></p>').text(`humidity: ${humidity} %`);
@@ -130,17 +131,35 @@ function getWeather(latitude, longitude) {
         else if (~~($('#currentUV').text()) > 7) {
             $('#currentUV').attr('class','ms-1 severeUV')
         };
+
     })
     
 }
 
 //create function that loops through city info and posts the 5 day forcast
-function fivedaycast(){
+function fivedaycast(latitude, longitude){
     
-    //grab global variables for each of the next days
-    // display date, icon representing weather condition, temp, windspeed and humidity
-    
-    
+    fetch('https://api.openweathermap.org/data/2.5/onecall?appid=f510236949173fad67a61182bbdd1a37&lat='+ latitude +'&lon='+ longitude +'&exclude=hourly,minutely&units=imperial')
+    .then((response) => {
+        return response.json();
+    })
+    .then(function (data3) {
+    console.log(data3);
+    //for loop to generate eacho the 5 day forcasts
+    for (var i= 0; i < 4; i++) {
+        //setting variables to get 5 day forcast
+        let { temp, wind_speed, humidity}  =data3.daily[i];
+        let { icon } =data3.daily[i].weather[0];
+
+        //create containers to hold each day forcast
+        var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`);
+        var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
+        var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`);
+        var humid =$('<p></p>').text(`humidity: ${humidity} %`);
+        // display date, icon representing weather condition, temp, windspeed and humidity
+        $(".forcastCards").empty().append(wicon, ctemp, wspeed, humid);
+    }
+    })
 }
 
 
