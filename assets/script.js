@@ -138,26 +138,34 @@ function getWeather(latitude, longitude) {
 
 //create function that loops through city info and posts the 5 day forcast
 function fivedaycast(latitude, longitude){
-    
+    $(".forcastCards").empty();
     fetch('https://api.openweathermap.org/data/2.5/onecall?appid=f510236949173fad67a61182bbdd1a37&lat='+ latitude +'&lon='+ longitude +'&exclude=hourly,minutely&units=imperial')
     .then((response) => {
         return response.json();
     })
     .then(function (data3) {
     console.log(data3);
-    //for loop to generate eacho the 5 day forcasts
-    for (var i= 0; i < 4; i++) {
+    //for loop to generate eacho the 5 day forcast}`);s
+    for (var i= 0; i < 5; i++) {
         //setting variables to get 5 day forcast
-        let { temp, wind_speed, humidity}  =data3.daily[i];
-        let { icon } =data3.daily[i].weather[0];
-
+        console.log(`This is forecast for day ${i}`)
+        let { wind_speed, humidity}  =data3.daily[i]; //windspeed and humidity for the day
+        let { day } =data3.daily[i].temp; // temp for the day
+        console.log(`The temp for the day is ${day}`);
+        let { icon } =data3.daily[i].weather[0]; //icon id for day
+        let { dt } =data3.daily[i]; //code for the day
+        const { timezone } = data3;
+        var adjustedTime = timezone / 60;
+        let forecastDate = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY'); //translated date
+        console.log(`The date for the day is ${forecastDate}`);
         //create containers to hold each day forcast
-        var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`);
-        var ctemp =$("<p></p>").text(`Temp: ${temp} °F`);
-        var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`);
-        var humid =$('<p></p>').text(`humidity: ${humidity} %`);
+        var today =$("<p></<p>").text(`${forecastDate}`); //date
+        var wicon =$("<img>").attr("src", `https://openweathermap.org/img/wn/${icon}.png`); //icon
+        var ctemp =$("<p></p>").text(`Temp: ${day} °F`); //temp
+        var wspeed =$('<p></p>').text(`Windspeed: ${wind_speed} MPH`); //wind speed
+        var humid =$('<p></p>').text(`humidity: ${humidity} %`); //humidity 
         // display date, icon representing weather condition, temp, windspeed and humidity
-        $(".forcastCards").empty().append(wicon, ctemp, wspeed, humid);
+        $(".forcastCards").append(today, wicon, ctemp, wspeed, humid);
     }
     })
 }
