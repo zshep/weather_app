@@ -10,4 +10,4 @@ Everytime there is a a search, a history of searches is created and saved into t
 ![Alt text](./assets/screenshot.png?raw=true "Screenshot")
 
 
-Link to Application: https://zshep.github.io/weather_app/cd ..
+Link to Application: https://github.com/zshep/weather_app
